@@ -46,6 +46,10 @@ Just include `username` in the scope being sent and replied to the client app.
    * **`name`**: `String` with the user's full name (used as a fallback for first name and surname)
    * Should some of these fields be missing, try finding *Lambda* functions or *Generators* that allow you to customize the JWT Tokens issued
 
+## OpenID Connect scopes / User Attributes setup on Redmine and WSO2IS
+
+Scope => profile,openid,email
+
 ## In Case Your OpenID Provider Is Offline ##
 
 If you enable the OpenId Connect plugin and your OpenId Connect Server is not reachable, but you still would like to login, you can use an additional parameter, to be able to login directly into redmine: 
