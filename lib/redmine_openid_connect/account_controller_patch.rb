@@ -102,7 +102,8 @@ module RedmineOpenidConnect
 
           user = User.new
 
-          user.login = user_info["user_name"] || user_info["nickname"] || user_info["preferred_username"] || user_info["email"]
+          user.login = user_info["username"] || user_info["nickname"] || user_info["preferred_username"] || user_info["email"]
+	  #["user_name"]
 
           firstname = user_info["given_name"]
           lastname = user_info["family_name"]
@@ -115,10 +116,12 @@ module RedmineOpenidConnect
             end
           end
 
+	  Rails.logger.info user_info["email"]
           attributes = {
             firstname: firstname || "",
             lastname: lastname || "",
-            mail: user_info["email"],
+            #mail: user_info["email"][0],
+	    mail: user_info["email"].is_a?(Array) ? user_info["email"].first : user_info["email"],
             mail_notification: 'only_my_events',
             last_login_on: Time.now
           }
